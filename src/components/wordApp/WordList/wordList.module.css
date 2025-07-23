@@ -1,0 +1,77 @@
+.word_header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.word_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto auto;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.word_row:hover {
+    background-color: #f9f9f9;
+}
+
+.word_cell {
+    padding: 6px 8px;
+    overflow-wrap: break-word;
+}
+
+.word_input {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.word_input input {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.word_input button {
+    padding: 6px 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.word_input button:hover {
+    background-color: #45a049;
+}
+
+button {
+    margin-left: 6px;
+    padding: 6px 10px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+input {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+}
