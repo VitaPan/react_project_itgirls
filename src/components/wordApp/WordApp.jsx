@@ -18,6 +18,16 @@ export default function WordApp() {
         russian: '',
     });
 
+    const [learnedCount, setLearnedCount] = useState(0);
+    const [learnedIds, setLearnedIds] = useState([]);
+
+    const handleLearned = (wordId) => {
+        if (!learnedIds.includes(wordId)) {
+            setLearnedCount(prev => prev + 1);
+            setLearnedIds(prev => [...prev, wordId]);
+        }
+    };
+
     useEffect(() => {
         const getWords = async () => {
             try {
@@ -89,6 +99,8 @@ export default function WordApp() {
             />
             <WordCard
                 words={words}
+                onLearned={handleLearned}
+                learnedCount={learnedCount}
             />
         </>
     );
