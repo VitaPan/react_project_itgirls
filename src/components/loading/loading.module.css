@@ -1,0 +1,43 @@
+.cssloadContainer {
+    position: relative;
+}
+
+.cssloadWhirlpool,
+.cssloadWhirlpool::before,
+.cssloadWhirlpool::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgb(204, 204, 204);
+    border-left-color: rgb(0, 0, 0);
+    border-radius: 974px;
+}
+
+.cssloadWhirlpool {
+    margin: -24px 0 0 -24px;
+    height: 49px;
+    width: 49px;
+    animation: cssloadRotate 1150ms linear infinite;
+}
+
+.cssloadWhirlpool::before {
+    content: "";
+    margin: -22px 0 0 -22px;
+    height: 43px;
+    width: 43px;
+    animation: cssloadRotate 1150ms linear infinite;
+}
+
+.cssloadWhirlpool::after {
+    content: "";
+    margin: -28px 0 0 -28px;
+    height: 55px;
+    width: 55px;
+    animation: cssloadRotate 2300ms linear infinite;
+}
+
+@keyframes cssloadRotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}

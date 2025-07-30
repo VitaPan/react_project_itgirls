@@ -1,10 +1,26 @@
-import WordApp from '../components/wordApp/WordApp';
+import React, { useContext } from 'react';
+import { WordsContext } from '../context/WordsContext';
+import WordList from '../components/wordApp/WordList/WordList';
+import WordCard from '../components/wordApp/WordCard/WordCard';
+import Loading from '../components/loading/Loading';
 
-export default function Home() {
+const WordApp = () => {
+    const { words, loading, error, addWord, updateWord, deleteWord } = useContext(WordsContext);
+
+    if (loading) return <Loading />;
+    if (error) return <Error message={error} />;
+
     return (
-        <div>
-            <h1>Главная</h1>
-            <WordApp />
+        <div className="word-app">
+            <WordList
+                words={words}
+                onAdd={addWord}
+                onUpdate={updateWord}
+                onDelete={deleteWord}
+            />
+            <WordCard words={words} />
         </div>
     );
-}
+};
+
+export default WordApp;

@@ -76,3 +76,16 @@ input {
     border-radius: 6px;
     padding: 6px;
 }
+
+.status {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    padding: 1rem;
+}

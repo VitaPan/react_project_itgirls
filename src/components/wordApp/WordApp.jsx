@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { fetchWords } from "../../api/words";
+import React, { useContext, useState } from "react";
+import { WordsContext } from "../../context/WordsContext";
 import WordList from "./WordList/WordList";
 import WordCard from "./WordCard/WordCard";
+import Loading from "../loading/Loading";
 
 export default function WordApp() {
-    const [words, setWords] = useState([]);
+    const {
+        words,
+        loading,
+        error,
+        addWord,
+        updateWord,
+        deleteWord,
+    } = useContext(WordsContext);
+
     const [editingId, setEditingId] = useState(null);
     const [editedWord, setEditedWord] = useState({
         english: '',
@@ -28,18 +37,6 @@ export default function WordApp() {
         }
     };
 
-    useEffect(() => {
-        const getWords = async () => {
-            try {
-                const data = await fetchWords();
-                setWords(data);
-            } catch (error) {
-                console.error("Ошибка с API", error);
-            }
-        };
-        getWords();
-    }, []);
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewWord({ ...newWord, [name]: value });
@@ -47,7 +44,7 @@ export default function WordApp() {
 
     const handleAddWord = () => {
         if (Object.values(newWord).some(val => val.trim() === "")) return;
-        setWords([{ ...newWord, id: Date.now() }, ...words]);
+        addWord(newWord);
         setNewWord({ english: "", transcription: "", russian: "" });
     };
 
@@ -71,16 +68,22 @@ export default function WordApp() {
     };
 
     const saveEdit = (id) => {
-        const updated = words.map(word =>
-            word.id === id ? { ...word, ...editedWord } : word
-        );
-        setWords(updated);
+        const updated = {
+            ...editedWord,
+            id,
+            tags: '',
+            tags_json: '',
+        };
+        updateWord(updated);
         cancelEditing();
     };
 
     const handleDeleteWord = (id) => {
-        setWords(words.filter(word => word.id !== id));
+        deleteWord(id);
     };
+
+    if (loading) return <Loading />;
+    if (error) return <p style={{ color: "red" }}>Ошибка: {error}</p>;
 
     return (
         <>
@@ -100,7 +103,8 @@ export default function WordApp() {
             <WordCard
                 words={words}
                 onLearned={handleLearned}
-                learnedCount={learnedCount}
+                learnedIds={learnedIds}
+                learnedCount={learnedIds.length}
             />
         </>
     );

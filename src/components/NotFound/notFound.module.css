@@ -1,0 +1,21 @@
+/* src/components/NotFound/notFound.module.css */
+
+.notFound {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.notFound h2 {
+    font-size: 2rem;
+    color: #ff5e5e;
+}
+
+.notFound p {
+    margin: 10px 0;
+}
+
+.notFound a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
